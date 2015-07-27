@@ -19,6 +19,12 @@ namespace ProductsApp
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "SetApi",
+                routeTemplate: "api/set/{controller}/{newName}/{newCatagory}/{newPrice}"
+            
+            );
         }
     }
 }

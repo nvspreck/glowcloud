@@ -12,3 +12,17 @@ D:\Getting Started with ASP.NET Web API (Tutorial Sample)\C#\ProductsApp\bin\Sys
 D:\Getting Started with ASP.NET Web API (Tutorial Sample)\C#\ProductsApp\obj\Debug\ProductsApp.csprojResolveAssemblyReference.cache
 D:\Getting Started with ASP.NET Web API (Tutorial Sample)\C#\ProductsApp\obj\Debug\ProductsApp.dll
 D:\Getting Started with ASP.NET Web API (Tutorial Sample)\C#\ProductsApp\obj\Debug\ProductsApp.pdb
+E:\Repos\glowcloud\ProductsApp\bin\ProductsApp.dll.config
+E:\Repos\glowcloud\ProductsApp\bin\ProductsApp.dll
+E:\Repos\glowcloud\ProductsApp\bin\ProductsApp.pdb
+E:\Repos\glowcloud\ProductsApp\bin\Newtonsoft.Json.dll
+E:\Repos\glowcloud\ProductsApp\bin\System.Net.Http.Formatting.dll
+E:\Repos\glowcloud\ProductsApp\bin\System.Web.Http.dll
+E:\Repos\glowcloud\ProductsApp\bin\System.Web.Http.WebHost.dll
+E:\Repos\glowcloud\ProductsApp\bin\Newtonsoft.Json.xml
+E:\Repos\glowcloud\ProductsApp\bin\System.Net.Http.Formatting.xml
+E:\Repos\glowcloud\ProductsApp\bin\System.Web.Http.xml
+E:\Repos\glowcloud\ProductsApp\bin\System.Web.Http.WebHost.xml
+E:\Repos\glowcloud\ProductsApp\obj\Debug\ProductsApp.csprojResolveAssemblyReference.cache
+E:\Repos\glowcloud\ProductsApp\obj\Debug\ProductsApp.dll
+E:\Repos\glowcloud\ProductsApp\obj\Debug\ProductsApp.pdb

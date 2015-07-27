@@ -9,12 +9,14 @@ namespace ProductsApp.Controllers
 {
     public class ProductsController : ApiController
     {
-        Product[] products = new Product[] 
+        List<Product> products = new List<Product> 
         { 
             new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 }, 
             new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M }, 
             new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M } 
         };
+
+        int id = 4;
 
         public IEnumerable<Product> GetAllProducts()
         {
@@ -29,6 +31,14 @@ namespace ProductsApp.Controllers
                 return NotFound();
             }
             return Ok(product);
+        }
+
+        [ActionName("Set")]
+        public IHttpActionResult AddProduct(string newName, string newCategory, decimal newPrice)
+        {
+            Product newProduct = new Product { Id = id++, Name = newName, Category = newCategory, Price = newPrice };
+            products.Add(newProduct);
+            return Ok(newProduct);
         }
     }
 }
