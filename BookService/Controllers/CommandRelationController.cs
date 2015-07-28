@@ -36,9 +36,9 @@ namespace BookService.Controllers
             int NextUser = CommandRelation.NextUserId;
             int GlowHubId = CommandRelation.GlowHubId;
 
-            CommandRelation nextCommandRelation = db.CommandRelations.SqlQuery("select * from commandrelations where UserId=%s and GlowHubId=%s", NextUser, GlowHubId).First();
+            CommandRelation nextCommandRelation = db.CommandRelations.SqlQuery("select * from commandrelations where UserId=%d and GlowHubId=%d", NextUser, GlowHubId).First();
 
-            db.GlowHubs.SqlQuery("update GlowHubs set commandrelationid=%s where id=%s", nextCommandRelation.Id, GlowHubId);
+            db.GlowHubs.SqlQuery("update GlowHubs set commandrelationid=%d where id=%d", nextCommandRelation.Id, GlowHubId);
 
             return Ok(CommandRelation);
         }
