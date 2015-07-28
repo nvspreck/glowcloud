@@ -89,30 +89,43 @@ namespace BookService.Controllers
                 return BadRequest(ModelState);
             }
         
-            CommandRelation = db.CommandRelations.Add(CommandRelation);
 
+            //Check to see if the user has an exisiting command for the glow
             List<CommandRelation> commandList = db.CommandRelations.SqlQuery("select * from CommandRelations where UserId=" + CommandRelation.UserId + " and GlowHubId=" + CommandRelation.GlowHubId + ";").ToList();
-            if (commandList.Count() == 0)
+            if (commandList.Count() == 1)
             {
-                CommandRelation.NextCommandId = CommandRelation.Id;
+                // User has a command update it
+                commandList.First().Command = CommandRelation.Command;
             }
-            else if (commandList.Count() >= 1)
+            //The user does not have a command. Insert there command into the glow q.
+            else if (commandList.Count() == 0)
             {
+                CommandRelation = db.CommandRelations.Add(CommandRelation);
 
-                CommandRelation first = commandList[0];
+                await db.SaveChangesAsync();
 
-                CommandRelation.NextCommandId = first.NextCommandId;
-                first.NextCommandId = CommandRelation.Id;
+                List<CommandRelation> exitingCommands = db.CommandRelations.SqlQuery("select * from CommandRelations where GlowHubId=" + CommandRelation.GlowHubId + ";").ToList();
+                // The glow does not have a q making a new one
+                if (exitingCommands.Count() == 1)
+                {
+                    CommandRelation.NextCommandId = CommandRelation.Id;
+                }
+                //The glow has a q add it to it.
+                else
+                {
+                    CommandRelation first = exitingCommands[0];
 
+                    CommandRelation.NextCommandId = first.NextCommandId;
+                    first.NextCommandId = CommandRelation.Id;
+                    //db.CommandRelations.Add(first);
+                    await db.SaveChangesAsync();
+                }
             }
+
+
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = CommandRelation.Id }, CommandRelation);
-        }
-
-        static bool greaterThanTwo(CommandRelation arg, int id)
-        {
-            return arg.Id == id;
         }
 
         // DELETE: api/CommandRelations/5
