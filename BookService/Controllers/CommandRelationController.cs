@@ -33,6 +33,13 @@ namespace BookService.Controllers
                 return NotFound();
             }
 
+            int NextUser = CommandRelation.NextUserId;
+            int GlowHubId = CommandRelation.GlowHubId;
+
+            CommandRelation nextCommandRelation = db.CommandRelations.SqlQuery("select * from commandrelations where UserId=%s and GlowHubId=%s", NextUser, GlowHubId).First();
+
+            db.GlowHubs.SqlQuery("update GlowHub set commandrelationid=%s where id=%s", nextCommandRelation.Id, GlowHubId);
+
             return Ok(CommandRelation);
         }
 
