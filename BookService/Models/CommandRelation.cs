@@ -9,7 +9,7 @@ namespace BookService.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int NextUserId { get; set; }
+        public int NextCommandId { get; set; }
         public int GlowHubId { get; set; }
         public string Command { get; set; }
     }

@@ -33,12 +33,14 @@ namespace BookService.Controllers
                 return NotFound();
             }
 
-            int NextUser = CommandRelation.NextUserId;
-            int GlowHubId = CommandRelation.GlowHubId;
+            if (CommandRelation.NextCommandId != 0)
+            {
+                CommandRelation NextCommandRelation = await db.CommandRelations.FindAsync(CommandRelation.NextCommandId);
+                GlowHub gh = await db.GlowHubs.FindAsync(CommandRelation.GlowHubId);
 
-            CommandRelation nextCommandRelation = db.CommandRelations.SqlQuery("select * from commandrelations where UserId=%d and GlowHubId=%d", NextUser, GlowHubId).First();
-
-            db.GlowHubs.SqlQuery("update GlowHubs set commandrelationid=%d where id=%d", nextCommandRelation.Id, GlowHubId);
+                gh.CommandRelationId = NextCommandRelation.Id;
+                db.SaveChanges();
+            }
 
             return Ok(CommandRelation);
         }
@@ -86,11 +88,31 @@ namespace BookService.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+        
             CommandRelation = db.CommandRelations.Add(CommandRelation);
+
+            List<CommandRelation> commandList = db.CommandRelations.SqlQuery("select * from CommandRelations where UserId=" + CommandRelation.UserId + " and GlowHubId=" + CommandRelation.GlowHubId + ";").ToList();
+            if (commandList.Count() == 0)
+            {
+                CommandRelation.NextCommandId = CommandRelation.Id;
+            }
+            else if (commandList.Count() >= 1)
+            {
+
+                CommandRelation first = commandList[0];
+
+                CommandRelation.NextCommandId = first.NextCommandId;
+                first.NextCommandId = CommandRelation.Id;
+
+            }
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = CommandRelation.Id }, CommandRelation);
+        }
+
+        static bool greaterThanTwo(CommandRelation arg, int id)
+        {
+            return arg.Id == id;
         }
 
         // DELETE: api/CommandRelations/5

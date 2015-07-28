@@ -31,7 +31,8 @@ namespace BookService.Migrations
                 );
 
             context.CommandRelations.AddOrUpdate(x => x.Id,
-                new CommandRelation() {Id = 1, UserId = 1, NextUserId = 2, GlowHubId = 1, Command = "Some json command"}
+                new CommandRelation() {Id = 1, UserId = 1, NextCommandId = 2, GlowHubId = 1, Command = "Some json command"},
+                new CommandRelation() {Id = 2, UserId = 2, NextCommandId = 1, GlowHubId = 1, Command = "Some other json command"}
             );
 
             context.Books.AddOrUpdate(x => x.Id,
