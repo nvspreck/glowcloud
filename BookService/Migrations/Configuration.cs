@@ -15,6 +15,15 @@ namespace BookService.Migrations
 
         protected override void Seed(BookService.Models.BookServiceContext context)
         {
+            context.Users.AddOrUpdate(x => x.Id,
+                new User() { Id = 1, Name = "nathaniel" },
+                new User() { Id = 2, Name = "quinn" }
+                );
+
+            context.GlowHubs.AddOrUpdate(x => x.Id,
+                new GlowHub() { Id = 1, Name = "Quinns balls" }
+                );
+
             context.Authors.AddOrUpdate(x => x.Id,
                 new Author() { Id = 1, Name = "Jane Austen" },
                 new Author() { Id = 2, Name = "Charles Dickens" },

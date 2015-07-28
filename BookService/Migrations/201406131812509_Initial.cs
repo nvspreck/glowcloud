@@ -30,7 +30,24 @@ namespace BookService.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Authors", t => t.AuthorId, cascadeDelete: true)
                 .Index(t => t.AuthorId);
-            
+
+            CreateTable(
+                "dbo.GlowHubs",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false),
+                })
+                .PrimaryKey(t => t.Id);
+
+            CreateTable(
+                "dbo.Users",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false),
+                })
+                .PrimaryKey(t => t.Id);
         }
         
         public override void Down()
@@ -39,6 +56,8 @@ namespace BookService.Migrations
             DropIndex("dbo.Books", new[] { "AuthorId" });
             DropTable("dbo.Books");
             DropTable("dbo.Authors");
+            DropTable("dbo.Users");
+            DropTable("dbo.GlowHubs");
         }
     }
 }
