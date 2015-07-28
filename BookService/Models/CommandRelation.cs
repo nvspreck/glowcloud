@@ -4,11 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookService.Models
 {
-    public class GlowHub
+    public class CommandRelation
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
+        public int UserId { get; set; }
+        public int NextUserId { get; set; }
+        public int GlowHubId { get; set; }
+        public string Command { get; set; }
     }
 }

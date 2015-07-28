@@ -30,6 +30,10 @@ namespace BookService.Migrations
                 new Author() { Id = 3, Name = "Miguel de Cervantes" }
                 );
 
+            context.CommandRelations.AddOrUpdate(x => x.Id,
+                new CommandRelation() {Id = 1, UserId = 1, NextUserId = 2, GlowHubId = 1, Command = "Some json command"}
+            );
+
             context.Books.AddOrUpdate(x => x.Id,
                 new Book()
                 {

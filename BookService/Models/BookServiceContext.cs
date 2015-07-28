@@ -27,6 +27,8 @@ namespace BookService.Models
         public System.Data.Entity.DbSet<BookService.Models.GlowHub> GlowHubs { get; set; }
 
         public System.Data.Entity.DbSet<BookService.Models.User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<BookService.Models.CommandRelation> CommandRelations { get; set; }
     
     }
 }

@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CommandRelation\" />
     <Folder Include="Views\GlowHub\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
@@ -157,6 +158,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CommandRelationController.cs" />
     <Compile Include="Controllers\GlowHubController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Models\BookDetailDTO.cs" />
     <Compile Include="Models\BookDTO.cs" />
     <Compile Include="Models\BookServiceContext.cs" />
+    <Compile Include="Models\CommandRelation.cs" />
     <Compile Include="Models\GlowHub.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
