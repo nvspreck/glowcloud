@@ -21,7 +21,7 @@ namespace BookService.Migrations
                 );
 
             context.GlowHubs.AddOrUpdate(x => x.Id,
-                new GlowHub() { Id = 1, Name = "Quinns balls" }
+                new GlowHub() { Id = 1, Name = "Quinns balls", CommandRelationId = 1}
                 );
 
             context.Authors.AddOrUpdate(x => x.Id,
