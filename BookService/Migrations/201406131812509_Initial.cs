@@ -37,6 +37,7 @@ namespace BookService.Migrations
                 {
                     Id = c.Int(nullable: false, identity: true),
                     Name = c.String(nullable: false),
+                    CommandRelationId = c.Int(nullable: false),
                 })
                 .PrimaryKey(t => t.Id);
 
