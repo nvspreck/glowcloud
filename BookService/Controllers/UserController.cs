@@ -73,20 +73,17 @@ namespace BookService.Controllers
 
         // POST: api/Users
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> PostUser(string Name)
+        public async Task<IHttpActionResult> PostUser(User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            User temp = new User();
-            temp.Name = Name;
-
-            temp = db.Users.Add(temp);
+            user = db.Users.Add(user);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = temp.Id }, temp);
+            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
         }
 
         // DELETE: api/Users/5
