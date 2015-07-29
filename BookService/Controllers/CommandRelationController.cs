@@ -109,6 +109,9 @@ namespace BookService.Controllers
                 if (exitingCommands.Count() == 1)
                 {
                     CommandRelation.NextCommandId = CommandRelation.Id;
+                    GlowHub emptyHub = db.GlowHubs.Find(CommandRelation.GlowHubId);
+                    emptyHub.CommandRelationId = CommandRelation.Id;
+                    await db.SaveChangesAsync();
                 }
                 //The glow has a q add it to it.
                 else
@@ -117,8 +120,9 @@ namespace BookService.Controllers
 
                     CommandRelation.NextCommandId = first.NextCommandId;
                     first.NextCommandId = CommandRelation.Id;
-                    //db.CommandRelations.Add(first);
+                    
                     await db.SaveChangesAsync();
+
                 }
             }
 
