@@ -10,12 +10,15 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookService.Models;
+using System.Threading;
 
 namespace BookService.Controllers
 {
     public class CommandRelationsController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
+
+        private static Mutex mutex = new Mutex();
 
         // GET: api/CommandRelations
         public IQueryable<CommandRelation> GetCommandRelations()
@@ -84,6 +87,7 @@ namespace BookService.Controllers
         [ResponseType(typeof(CommandRelation))]
         public async Task<IHttpActionResult> PostCommandRelation(CommandRelation CommandRelation)
         {
+            mutex.WaitOne();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -129,6 +133,7 @@ namespace BookService.Controllers
 
             await db.SaveChangesAsync();
 
+            mutex.ReleaseMutex();
             return CreatedAtRoute("DefaultApi", new { id = CommandRelation.Id }, CommandRelation);
         }
 
